@@ -116,7 +116,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="counterLabel" destination="cy3-7R-F1N" id="Nzg-fD-Amr"/>
+                        <outlet property="counterLabel" destination="AWx-SK-yE7" id="BfW-sX-LTv"/>
                         <outlet property="imageView" destination="5uO-br-SnF" id="TG4-dH-Ngz"/>
                         <outlet property="textLabel" destination="MOA-R1-0gp" id="3FO-JF-hdb"/>
                     </connections>
