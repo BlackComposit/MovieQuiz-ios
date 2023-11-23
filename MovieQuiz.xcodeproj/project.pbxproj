@@ -75,9 +75,9 @@
 		892663E02B0C154400B8CB33 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				892663E12B0C156600B8CB33 /* QuizQuestion.swift */,
 				892663E32B0C159300B8CB33 /* QuizStepViewModel.swift */,
 				892663E52B0C15BD00B8CB33 /* QuizResultsViewModel.swift */,
+				892663E12B0C156600B8CB33 /* QuizQuestion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
