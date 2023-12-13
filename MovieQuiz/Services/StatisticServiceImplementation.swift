@@ -75,12 +75,12 @@ final class StatisticServiceImplementation: StatisticService {
         correct += count
         total += amount
         
-        let gameRec = GameRecord(correct: count, total: amount, date: Date())
-        guard gameRec.isBetterThan(GameRecord(correct: bestGame.correct, total: bestGame.total, date: bestGame.date)) else {
+        let gameRecord = GameRecord(correct: count, total: amount, date: Date())
+        guard gameRecord.isBetterThan(GameRecord(correct: bestGame.correct, total: bestGame.total, date: bestGame.date)) else {
             print("Эта игра не лучше предыдущей")
             return }
         
-        guard let data = try? JSONEncoder().encode(gameRec) else {
+        guard let data = try? JSONEncoder().encode(gameRecord) else {
             print("Не удалось декодировать данные в функции store")
             return
         }

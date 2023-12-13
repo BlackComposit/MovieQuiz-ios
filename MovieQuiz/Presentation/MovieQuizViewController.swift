@@ -5,6 +5,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var counterLabel: UILabel!
+    @IBOutlet private weak var yesButton: UIButton!
+    @IBOutlet private weak var noButton: UIButton!
     
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
@@ -32,26 +34,28 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         currentQuestion = question
         let viewModel = convert(model: question)
         DispatchQueue.main.async { [weak self] in
-                self?.show(quiz: viewModel)
-            }
+            self?.show(quiz: viewModel)
+        }
     }
     
     @IBAction private func yesButtonClicked(_ sender: Any) {
         guard let currentQuestion = currentQuestion else {
             return
         }
-            let givenAnswer = true
-            
-            showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        let givenAnswer = true
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
     @IBAction private func noButtonClicked(_ sender: Any) {
         guard let currentQuestion = currentQuestion else {
             return
         }
-            let givenAnswer = false
-            
-            showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        let givenAnswer = false
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -81,6 +85,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self else { return }
             self.showNextQuestionOrResults()
+            yesButton.isEnabled = true
+            noButton.isEnabled = true
         }
     }
     
@@ -101,6 +107,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private func show(quiz result: QuizResultsViewModel) {
         guard let statisticService else { return }
         statisticService.store(correct: correctAnswers, total: questionsAmount)
+        
         let alertModel = AlertModel(
             title: result.title,
             message: """
