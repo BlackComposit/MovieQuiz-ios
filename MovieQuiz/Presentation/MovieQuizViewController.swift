@@ -12,6 +12,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
+    private var statisticService: StatisticServiceImplementation?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         questionFactory = QuestionFactory()
         questionFactory?.delegate = self
         questionFactory?.requestNextQuestion()
-        
+        statisticService = StatisticServiceImplementation()
         alertPresenter = AlertPresenter(delegate: self)
         imageView.layer.cornerRadius = 20
     }
@@ -98,10 +99,17 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func show(quiz result: QuizResultsViewModel) {
+        guard let statisticService else { return }
+        statisticService.store(correct: correctAnswers, total: questionsAmount)
         let alertModel = AlertModel(
-            title: "Этот раунд окончен!",
-            message: "Ваш результат: \(correctAnswers)/\(questionsAmount)",
-            buttonText: "Сыграть ещё раз") {
+            title: result.title,
+            message: """
+            Ваш результат: \(correctAnswers)/\(questionsAmount)
+            Количество сыгранных квизов: \(statisticService.gamesCount)
+            Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total) (\(statisticService.bestGame.date.dateTimeString))
+            Средняя точность: \(String(format: "%.2f",statisticService.totalAccuracy))%
+            """,
+            buttonText: result.buttonText) {
                 self.currentQuestionIndex = 0
                 self.correctAnswers = 0
                 self.questionFactory?.requestNextQuestion()
@@ -109,3 +117,4 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter?.show(alertModel: alertModel)
     }
 }
+
