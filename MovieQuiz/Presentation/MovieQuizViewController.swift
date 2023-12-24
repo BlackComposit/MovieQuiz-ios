@@ -124,3 +124,4 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter?.show(alertModel: alertModel)
     }
 }
+
