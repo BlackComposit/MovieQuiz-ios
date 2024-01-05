@@ -29,44 +29,10 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:MovieQuizTests.xctestplan"
+            reference = "container:MovieQuizPresenter.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8966F36A2B3CE81700BC5FFF"
-               BuildableName = "MovieQuizTests.xctest"
-               BlueprintName = "MovieQuizTests"
-               ReferencedContainer = "container:MovieQuiz.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "890219A62B44D4C40051C0FC"
-               BuildableName = "MovieQuizUITests.xctest"
-               BlueprintName = "MovieQuizUITests"
-               ReferencedContainer = "container:MovieQuiz.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "89B2F7CD2B4796B300E3CA65"
-               BuildableName = "MovieQuizPresenterTests.xctest"
-               BlueprintName = "MovieQuizPresenterTests"
-               ReferencedContainer = "container:MovieQuiz.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

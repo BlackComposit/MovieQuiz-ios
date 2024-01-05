@@ -1,6 +1,6 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var counterLabel: UILabel!
@@ -49,6 +49,7 @@ final class MovieQuizViewController: UIViewController {
     }
     
     func show(quiz step: QuizStepViewModel) {
+        imageView.layer.borderColor = UIColor.clear.cgColor
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber

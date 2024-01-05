@@ -10,9 +10,9 @@ import UIKit
 final class MovieQuizPresenter: QuestionFactoryDelegate {
     private let statisticService: StatisticService!
     private var questionFactory: QuestionFactoryProtocol?
-    private weak var viewController: MovieQuizViewController?
+    private weak var viewController: MovieQuizViewControllerProtocol?
     
-    init(viewController: MovieQuizViewController) {
+    init(viewController: MovieQuizViewControllerProtocol) {
         self.viewController = viewController
         statisticService = StatisticServiceImplementation()
         questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
@@ -131,7 +131,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
-            viewController?.imageView.layer.borderColor = UIColor.clear.cgColor
             self.proceedToNextQuestionOrResults()
         }
     }
